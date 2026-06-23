@@ -12,8 +12,6 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://images.unsplash.com" crossorigin>
-<link rel="preconnect" href="https://source.unsplash.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Hind+Madurai:wght@400;500;600;700&family=Catamaran:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
@@ -590,11 +588,11 @@ section { padding: 100px 0; position: relative; z-index: 2; }
 .problem-card-body { padding: 28px; }
 .problem-card-num {
   font-family: 'Fraunces', serif;
-  font-size: 48px;
+  font-size: 30px;
   font-weight: 400;
   color: var(--saffron);
-  letter-spacing: -0.03em;
-  line-height: 1;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
   font-style: italic;
   margin-bottom: 12px;
 }
@@ -699,12 +697,8 @@ section { padding: 100px 0; position: relative; z-index: 2; }
    THREE PILLARS — bento style with photos
    ============================================================ */
 
-.pillars {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-@media (max-width: 900px) { .pillars { grid-template-columns: 1fr; } }
+/* (removed stray grid rule that was squishing the pillars section;
+   the real 3-column layout lives in .pillars-grid below) */
 
 .pillar {
   background: var(--paper);
@@ -1387,6 +1381,101 @@ footer {
 /* Section: TESTIMONIALS */
 .testimonials { padding: 100px 0; background: var(--bg-warm); }
 
+/* Founding-farmer invitation (honest, no fake testimonials) */
+.founding-invite {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 28px;
+  margin-top: 56px;
+  align-items: stretch;
+}
+@media (max-width: 900px) { .founding-invite { grid-template-columns: 1fr; } }
+
+.founding-card {
+  background: var(--green-deep);
+  color: #FFFEF9;
+  border-radius: calc(var(--r) * 3);
+  padding: 48px 44px;
+  position: relative;
+  overflow: hidden;
+}
+.founding-card::after {
+  content: '';
+  position: absolute;
+  right: -60px; bottom: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(95,168,74,0.35), transparent 70%);
+  pointer-events: none;
+}
+.founding-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--turmeric);
+  border: 1px solid rgba(232,163,61,0.4);
+  border-radius: 100px;
+  padding: 5px 14px;
+  margin-bottom: 22px;
+}
+.founding-badge.ta { font-family: 'Catamaran', serif; letter-spacing: 0.04em; text-transform: none; }
+.founding-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 30px;
+  line-height: 1.1;
+  color: #FFFEF9;
+  margin-bottom: 16px;
+}
+.founding-card p {
+  color: rgba(255,254,249,0.82);
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+.founding-card .btn-whatsapp { position: relative; z-index: 1; }
+
+.founding-promise {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: calc(var(--r) * 3);
+  padding: 44px 40px;
+}
+.founding-promise-label {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin-bottom: 24px;
+}
+.founding-promise-label.ta { font-family: 'Catamaran', serif; letter-spacing: 0.04em; text-transform: none; }
+.founding-list { list-style: none; }
+.founding-list li {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-mid);
+}
+.founding-list li:last-child { margin-bottom: 0; }
+.founding-list li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 7px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--green-soft);
+  box-shadow: inset 0 0 0 2px var(--green-mid);
+}
+.founding-list li strong { color: var(--green); font-weight: 600; }
+.founding-list li.ta { font-family: 'Catamaran', serif; }
+
 /* Updated testimonial styling */
 .testi-quote-mark {
   font-family: 'Fraunces', serif;
@@ -1648,9 +1737,9 @@ footer {
 .coverage-stat { display: flex; flex-direction: column; }
 .coverage-stat-num {
   font-family: 'Fraunces', serif;
-  font-size: 44px;
+  font-size: 30px;
   font-weight: 400;
-  color: var(--saffron);
+  color: var(--green-bright);
   font-style: italic;
   line-height: 1;
 }
@@ -1679,6 +1768,15 @@ footer {
 
 /* Section: PARTNERS — bento style */
 .partners { padding: 100px 0; background: var(--bg-warm); }
+.partners-intro {
+  max-width: 640px;
+  margin: 18px auto 0;
+  text-align: center;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-mid);
+}
+.partners-intro.ta { font-family: 'Catamaran', serif; }
 .partners-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1978,13 +2076,7 @@ footer {
 <header class="topbar">
   <div class="topbar-inner">
     <a href="#" class="brand">
-      <svg class="brand-mark" viewBox="0 0 40 40" fill="none">
-        <circle cx="20" cy="20" r="18" stroke="var(--green)" stroke-width="1.3"/>
-        <circle cx="20" cy="20" r="11" stroke="var(--saffron)" stroke-width="1" opacity="0.6"/>
-        <path d="M14 24 Q20 14 26 24" stroke="var(--green)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-        <path d="M16 22 Q20 18 24 22" stroke="var(--green-mid)" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-        <circle cx="20" cy="20" r="2.2" fill="var(--saffron)"/>
-      </svg>
+      <svg class="brand-mark" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id='lgleaf' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='#3D7A3A'/><stop offset='1' stop-color='#1F4D2A'/></linearGradient></defs><rect x='1.5' y='1.5' width='41' height='41' rx='12' fill='#FBF6EA' stroke='#1F4D2A' stroke-width='1.6'/><path d='M22 34 C22 26 22 22 22 14' stroke='#1F4D2A' stroke-width='2.4' stroke-linecap='round'/><path d='M22 22 C16 22 11 19 9.5 13 C16 12.5 21 15 22 21 Z' fill='url(#lgleaf)'/><path d='M22 18 C28 18 33 15 34.5 9 C28 8.5 23 11 22 17 Z' fill='#3D7A3A'/><circle cx='30.5' cy='27' r='4.4' fill='#E08A2B'/><g stroke='#E08A2B' stroke-width='1.5' stroke-linecap='round'><path d='M30.5 19.5 v-2.2'/><path d='M30.5 36.7 v-2.2'/><path d='M37.8 27 h2.2'/><path d='M21.0 27 h2.2'/><path d='M35.8 22 l1.6 -1.6'/><path d='M23.6 33.6 l1.6 -1.6'/></g></svg>
       <div>
         <div class="brand-name">Agrow<em>AI</em></div>
         <div class="brand-sub ta">தமிழ்நாட்டு விவசாயிக்கான AI</div>
@@ -2037,14 +2129,14 @@ footer {
         <p class="hero-ta" data-show-lang="ta">பயிர் நோய் · சந்தை விலை · வானிலை — எல்லாமே ஒரே இடத்தில்</p>
 
         <p class="hero-sub" data-show-lang="en">
-          Send a photo of your sick crop on WhatsApp. Get a diagnosis in Tamil within 30 seconds. Plus daily mandi prices, weather alerts, and government scheme updates — all for free.
+          Send a photo of your sick crop on WhatsApp and get a diagnosis in Tamil. Plus today's mandi prices and local weather alerts. No app, no signup — and free.
         </p>
         <p class="hero-sub ta" data-show-lang="ta">
-          உங்கள் பயிரின் புகைப்படத்தை WhatsApp-ல் அனுப்புங்கள். 30 விநாடிகளில் தமிழில் பதில். தினசரி சந்தை விலை, வானிலை எச்சரிக்கை, அரசு திட்டங்கள் — எல்லாம் இலவசம்.
+          உங்கள் பயிரின் புகைப்படத்தை WhatsApp-ல் அனுப்புங்கள் — தமிழில் பதில் வரும். இன்றைய சந்தை விலை, உள்ளூர் வானிலை எச்சரிக்கையும். செயலி இல்லை, பதிவு இல்லை — இலவசம்.
         </p>
 
         <div class="hero-ctas">
-          <a href="https://wa.me/911234567890?text=Hi%20AgrowAI" class="btn btn-whatsapp btn-lg">
+          <a href="https://wa.me/919790177750?text=Hi%20AgrowAI" class="btn btn-whatsapp btn-lg">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.149-.174.198-.298.297-.496.099-.198.05-.372-.025-.521-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
             </svg>
@@ -2060,19 +2152,19 @@ footer {
 
         <div class="hero-proof">
           <div class="hero-proof-item">
-            <div class="hero-proof-num">4</div>
-            <div class="hero-proof-lbl" data-show-lang="en">South TN<br>districts</div>
-            <div class="hero-proof-lbl ta" data-show-lang="ta">தென் தமிழ்நாடு<br>மாவட்டங்கள்</div>
+            <div class="hero-proof-num">3</div>
+            <div class="hero-proof-lbl" data-show-lang="en">things it does<br>today</div>
+            <div class="hero-proof-lbl ta" data-show-lang="ta">இன்று செய்வது<br>3 விஷயங்கள்</div>
           </div>
           <div class="hero-proof-item">
-            <div class="hero-proof-num">30s</div>
-            <div class="hero-proof-lbl" data-show-lang="en">Average response<br>time</div>
-            <div class="hero-proof-lbl ta" data-show-lang="ta">சராசரி பதில்<br>நேரம்</div>
-          </div>
-          <div class="hero-proof-item">
-            <div class="hero-proof-num">100%</div>
+            <div class="hero-proof-num">₹0</div>
             <div class="hero-proof-lbl" data-show-lang="en">Free for<br>farmers</div>
             <div class="hero-proof-lbl ta" data-show-lang="ta">விவசாயிகளுக்கு<br>இலவசம்</div>
+          </div>
+          <div class="hero-proof-item">
+            <div class="hero-proof-num">0</div>
+            <div class="hero-proof-lbl" data-show-lang="en">apps to<br>install</div>
+            <div class="hero-proof-lbl ta" data-show-lang="ta">செயலி<br>தேவையில்லை</div>
           </div>
           <div class="hero-proof-item">
             <div class="hero-proof-num">தமிழ்</div>
@@ -2084,16 +2176,10 @@ footer {
 
       <div class="hero-visual">
         <div class="hero-photo-main">
-          <img src="https://images.unsplash.com/photo-1592982537447-7440770faae6?w=1000&q=80&auto=format&fit=crop"
-               alt="Tamil Nadu farmer in green paddy field"
-               onerror="this.onerror=null; this.src='https://source.unsplash.com/featured/800x800/?indian,farmer,field'"
-               loading="eager" />
+          <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=900&q=80" alt="Farmer in field" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit"/>
         </div>
         <div class="hero-photo-small">
-          <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=600&q=80&auto=format&fit=crop"
-               alt="Coconut palms and rural Tamil Nadu landscape"
-               onerror="this.onerror=null; this.src='https://source.unsplash.com/featured/600x500/?coconut,palm,tamil'"
-               loading="eager" />
+          <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=700&q=80" alt="Green crops" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit"/>
         </div>
 
         <div class="float-card fc-1">
@@ -2101,8 +2187,9 @@ footer {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20" stroke-linecap="round"/></svg>
           </div>
           <div>
-            <strong>+18%</strong> yield
-            <div class="float-card-meta">PADDY · 2025</div>
+            <strong data-show-lang="en">Photo → answer</strong>
+            <strong class="ta" data-show-lang="ta">படம் → பதில்</strong>
+            <div class="float-card-meta">LIVE</div>
           </div>
         </div>
         <div class="float-card fc-2">
@@ -2110,9 +2197,8 @@ footer {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3" stroke-linecap="round"/></svg>
           </div>
           <div>
-            <strong>30s</strong>
-            <span data-show-lang="en">diagnosis</span>
-            <span class="ta" data-show-lang="ta">நோய் கண்டறிதல்</span>
+            <strong data-show-lang="en">In Tamil</strong>
+            <strong class="ta" data-show-lang="ta">தமிழில்</strong>
             <div class="float-card-meta">LIVE</div>
           </div>
         </div>
@@ -2121,8 +2207,9 @@ footer {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h2M12 3v2M21 12h-2M12 21v-2M5.6 5.6l1.4 1.4M18.4 18.4l-1.4-1.4M5.6 18.4l1.4-1.4M18.4 5.6l-1.4 1.4" stroke-linecap="round"/><circle cx="12" cy="12" r="3.5"/></svg>
           </div>
           <div>
-            <strong>34°C</strong> <span data-show-lang="en">Tirunelveli</span><span class="ta" data-show-lang="ta">திருநெல்வேலி</span>
-            <div class="float-card-meta">RAIN IN 6H</div>
+            <strong data-show-lang="en">Weather alerts</strong>
+            <strong class="ta" data-show-lang="ta">வானிலை எச்சரிக்கை</strong>
+            <div class="float-card-meta">LIVE</div>
           </div>
         </div>
       </div>
@@ -2137,20 +2224,17 @@ footer {
 <div class="trust">
   <div class="container">
     <div class="trust-row">
-      <div class="trust-lbl" data-show-lang="en">Built with research from</div>
-      <div class="trust-lbl ta" data-show-lang="ta">ஆராய்ச்சி பங்காளிகள்</div>
+      <div class="trust-lbl" data-show-lang="en">Built on open, public data</div>
+      <div class="trust-lbl ta" data-show-lang="ta">பொது தரவின் அடிப்படையில்</div>
       <div class="trust-logos">
-        <span>TNAU</span>
+        <span data-show-lang="en">Agmarknet prices</span>
+        <span class="ta" data-show-lang="ta">அக்மார்க்நெட் விலை</span>
         <span>·</span>
-        <span>ICAR</span>
+        <span data-show-lang="en">IMD &amp; Open-Meteo weather</span>
+        <span class="ta" data-show-lang="ta">IMD &amp; Open-Meteo வானிலை</span>
         <span>·</span>
-        <span data-show-lang="en">Agmarknet</span>
-        <span class="ta" data-show-lang="ta">அக்மார்க்நெட்</span>
-        <span>·</span>
-        <span data-show-lang="en">IMD</span>
-        <span class="ta" data-show-lang="ta">இந்திய வானிலை</span>
-        <span>·</span>
-        <span data-show-lang="en">Open-Meteo</span>
+        <span data-show-lang="en">Public agronomy research</span>
+        <span class="ta" data-show-lang="ta">பொது வேளாண் ஆராய்ச்சி</span>
       </div>
     </div>
   </div>
@@ -2179,27 +2263,25 @@ footer {
     <div class="problem-grid">
       <div class="problem-card reveal">
         <div class="problem-card-img">
-          <img src="https://images.unsplash.com/photo-1530507629858-e3759c1bc7eb?w=800&q=80&auto=format&fit=crop"
-               alt="Diseased banana plant"
-               onerror="this.onerror=null; this.src='https://source.unsplash.com/featured/800x500/?crop,disease,plant'" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80" alt="Crop leaves" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="problem-card-body">
-          <div class="problem-card-num">35%</div>
+          <div class="problem-card-num" data-show-lang="en">Wrong<br>medicine</div>
+          <div class="problem-card-num ta" data-show-lang="ta">தவறான<br>மருந்து</div>
           <h3 data-show-lang="en">Wrong pesticide use</h3>
           <h3 class="ta" data-show-lang="ta">தவறான பூச்சிமருந்து</h3>
-          <p data-show-lang="en">Farmers spray the wrong chemical for the wrong disease — wasting ₹8,000 per acre per season and damaging soil long-term.</p>
-          <p class="ta" data-show-lang="ta">தவறான நோய்க்கு தவறான மருந்து தெளிக்கிறார்கள் — ஏக்கருக்கு ₹8,000 வீணாகிறது, மண்ணும் கெடுகிறது.</p>
+          <p data-show-lang="en">Spraying the wrong chemical for the wrong disease wastes money and damages the soil for seasons to come. A photo to AgrowAI gets the right answer first.</p>
+          <p class="ta" data-show-lang="ta">தவறான நோய்க்கு தவறான மருந்து தெளிப்பது பணத்தை வீணாக்குகிறது, மண்ணையும் கெடுக்கிறது. AgrowAI-க்கு ஒரு படம் அனுப்பினால் சரியான பதில் முதலில் கிடைக்கும்.</p>
         </div>
       </div>
 
       <div class="problem-card reveal">
         <div class="problem-card-img">
-          <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&q=80&auto=format&fit=crop"
-               alt="Vegetable market in India"
-               onerror="this.onerror=null; this.src='https://source.unsplash.com/featured/800x500/?market,vegetables,india'" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&q=80" alt="Market produce" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="problem-card-body">
-          <div class="problem-card-num">₹15k</div>
+          <div class="problem-card-num" data-show-lang="en">Wrong<br>price</div>
+          <div class="problem-card-num ta" data-show-lang="ta">தவறான<br>விலை</div>
           <h3 data-show-lang="en">Sold below market price</h3>
           <h3 class="ta" data-show-lang="ta">குறைந்த விலையில் விற்றது</h3>
           <p data-show-lang="en">Without daily mandi prices from Tirunelveli, Madurai, Tuticorin — farmers accept whatever the local trader offers.</p>
@@ -2209,12 +2291,11 @@ footer {
 
       <div class="problem-card reveal">
         <div class="problem-card-img">
-          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80&auto=format&fit=crop"
-               alt="Drought parched field"
-               onerror="this.onerror=null; this.src='https://source.unsplash.com/featured/800x500/?drought,dry,field'" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1438449805896-28a666819a20?w=800&q=80" alt="Rain clouds over field" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="problem-card-body">
-          <div class="problem-card-num">22%</div>
+          <div class="problem-card-num" data-show-lang="en">Lost to<br>rain</div>
+          <div class="problem-card-num ta" data-show-lang="ta">மழையால்<br>இழப்பு</div>
           <h3 data-show-lang="en">Crops lost to weather</h3>
           <h3 class="ta" data-show-lang="ta">வானிலையால் இழப்பு</h3>
           <p data-show-lang="en">Unexpected rain destroys harvested paddy. Heatwaves wilt vegetables. Weather alerts in Tamil could have saved the harvest.</p>
@@ -2267,8 +2348,8 @@ footer {
         <h3 class="ta" data-show-lang="ta">பதில் பெறுங்கள்</h3>
         <span class="ta" data-show-lang="en">தமிழில் பதில் பெறுங்கள்</span>
         <span data-show-lang="ta">💬</span>
-        <p data-show-lang="en">AI trained on TNAU research diagnoses your crop. You get the disease name in Tamil, treatment steps, and approximate cost.</p>
-        <p class="ta" data-show-lang="ta">TNAU ஆராய்ச்சியில் கற்ற AI உங்கள் பயிரை சோதிக்கும். நோய் பெயர், சிகிச்சை, மற்றும் தோராய செலவு — அனைத்தும் தமிழில்.</p>
+        <p data-show-lang="en">The AI looks at your photo, draws on published agronomy knowledge, and gives you the disease name in Tamil, the treatment steps, and roughly what it costs.</p>
+        <p class="ta" data-show-lang="ta">AI உங்கள் படத்தை பார்த்து, பொது வேளாண் அறிவை அடிப்படையாகக் கொண்டு, நோய் பெயர், சிகிச்சை படிகள், தோராய செலவு — அனைத்தையும் தமிழில் தரும்.</p>
       </div>
       <div class="step reveal">
         <div class="step-num">4</div>
@@ -2303,9 +2384,7 @@ footer {
       <!-- Pillar 1 — large -->
       <div class="pillar pillar-large reveal">
         <div class="pillar-img">
-          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=1200&q=80&auto=format&fit=crop"
-               alt="Crop close-up showing leaf disease"
-               onerror="this.onerror=null; this.src='https://source.unsplash.com/featured/1200x800/?crop,leaves,disease'" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=800&q=80" alt="Crop leaf" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="pillar-body">
           <span class="pillar-tag" data-show-lang="en">01 · Diagnosis</span>
@@ -2320,9 +2399,7 @@ footer {
       <!-- Pillar 2 — small -->
       <div class="pillar reveal">
         <div class="pillar-img">
-          <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&q=80&auto=format&fit=crop"
-               alt="Indian vegetable market"
-               onerror="this.onerror=null; this.src='https://source.unsplash.com/featured/800x600/?market,india,vegetables'" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=800&q=80" alt="Vegetable market" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="pillar-body">
           <span class="pillar-tag" data-show-lang="en">02 · Prices</span>
@@ -2337,9 +2414,7 @@ footer {
       <!-- Pillar 3 — small -->
       <div class="pillar reveal">
         <div class="pillar-img">
-          <img src="https://images.unsplash.com/photo-1561553873-e8491a564fd0?w=800&q=80&auto=format&fit=crop"
-               alt="Storm clouds over fields"
-               onerror="this.onerror=null; this.src='https://source.unsplash.com/featured/800x600/?monsoon,clouds,field'" loading="lazy" />
+          <img src="https://images.unsplash.com/photo-1438449805896-28a666819a20?w=800&q=80" alt="Rain clouds over field" style="width:100%;height:100%;object-fit:cover;display:block"/>
         </div>
         <div class="pillar-body">
           <span class="pillar-tag" data-show-lang="en">03 · Weather</span>
@@ -2374,14 +2449,14 @@ footer {
           <li data-show-lang="en"><strong>Tamil-first.</strong> Reads, understands, and replies in Tamil natively.</li>
           <li class="ta" data-show-lang="ta"><strong>தமிழே முதன்மை.</strong> தமிழில் படிக்கும், புரிந்துகொள்ளும், பதிலளிக்கும்.</li>
 
-          <li data-show-lang="en"><strong>Works on any phone.</strong> Doesn't need a smartphone — works on KaiOS WhatsApp too.</li>
-          <li class="ta" data-show-lang="ta"><strong>எல்லா போனிலும் வேலை செய்யும்.</strong> ஸ்மார்ட்போன் தேவையில்லை.</li>
+          <li data-show-lang="en"><strong>Voice messages work.</strong> Don't want to type? Just record your question in Tamil.</li>
+          <li class="ta" data-show-lang="ta"><strong>குரல் செய்தியும் வேலை செய்யும்.</strong> தட்டச்சு வேண்டாம் — தமிழில் பதிவு செய்யுங்கள்.</li>
 
-          <li data-show-lang="en"><strong>Voice messages.</strong> Don't type — just record your question in Tamil.</li>
-          <li class="ta" data-show-lang="ta"><strong>குரல் செய்தி.</strong> தட்டச்சு செய்ய வேண்டாம் — தமிழில் பதிவு செய்யுங்கள்.</li>
+          <li data-show-lang="en"><strong>Nothing to install.</strong> It's the same WhatsApp you already use for family.</li>
+          <li class="ta" data-show-lang="ta"><strong>எதையும் நிறுவ வேண்டாம்.</strong> குடும்பத்திற்கு பயன்படுத்தும் அதே WhatsApp.</li>
 
-          <li data-show-lang="en"><strong>Free for farmers.</strong> Sponsored by FPOs, banks, and government programs.</li>
-          <li class="ta" data-show-lang="ta"><strong>விவசாயிகளுக்கு இலவசம்.</strong> FPO, வங்கி, அரசு திட்டங்களால் வழங்கப்படுகிறது.</li>
+          <li data-show-lang="en"><strong>Free for farmers.</strong> No charge for diagnosis, prices, or weather — today and going forward.</li>
+          <li class="ta" data-show-lang="ta"><strong>விவசாயிகளுக்கு இலவசம்.</strong> நோய், விலை, வானிலைக்கு கட்டணம் இல்லை — இன்றும், இனியும்.</li>
         </ul>
 
         <a href="#cta" class="btn btn-primary">
@@ -2423,9 +2498,7 @@ footer {
 
               <div class="wa-msg wa-msg-in">
                 <div class="wa-bubble wa-img">
-                  <img src="https://images.unsplash.com/photo-1597393922419-451d11f137f0?w=400&q=70&auto=format&fit=crop"
-                       alt="banana leaf"
-                       onerror="this.onerror=null; this.style.display='none'" loading="lazy" />
+                  <svg viewBox='0 0 400 300' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMidYMid slice' style='width:100%;height:100%;display:block' ><rect width='400' height='300' fill='#D4E4BE'/><rect x='180' y='90' width='30' height='180' rx='8' fill='#7C8A4A'/><path d='M195 120 Q90 80 40 140 Q120 120 195 160 Z' fill='#C8B24A'/><path d='M195 140 Q300 100 360 160 Q270 145 195 175 Z' fill='#B89A3A'/><g fill='#6E4A1E' opacity='0.7'><circle cx='120' cy='135' r='7'/><circle cx='280' cy='150' r='6'/><circle cx='150' cy='150' r='4'/></g></svg>
                 </div>
                 <div class="wa-bubble" data-show-lang="en">என் வாழையின் இலை மஞ்சள் ஆகி வாடுது. என்ன பிரச்சனை?</div>
                 <div class="wa-bubble ta" data-show-lang="ta">என் வாழையின் இலை மஞ்சள் ஆகி வாடுது. என்ன பிரச்சனை?</div>
@@ -2497,67 +2570,45 @@ footer {
 <section class="testimonials" id="testimonials">
   <div class="container">
     <div class="sect-head centered">
-      <span class="eyebrow" data-show-lang="en">Farmer voices</span>
-      <span class="eyebrow ta" data-show-lang="ta">விவசாயி குரல்கள்</span>
-      <h2 data-show-lang="en">From <em>27 villages</em> across South Tamil Nadu.</h2>
-      <h2 class="ta" data-show-lang="ta" style="font-family: 'Catamaran', serif; font-weight: 600;">தென் தமிழ்நாட்டின் <em>27 கிராமங்களிலிருந்து</em>.</h2>
-      <p data-show-lang="en">These are real people running real farms. We're testing AgrowAI with them right now. Their feedback is shaping every feature we build.</p>
-      <p class="ta" data-show-lang="ta">இவர்கள் உண்மையான பண்ணைகளை நடத்தும் உண்மையான மனிதர்கள். அவர்களுடன் இப்போது AgrowAI-ஐ சோதிக்கிறோம். அவர்களின் கருத்துக்கள் ஒவ்வொரு அம்சத்தையும் வடிவமைக்கின்றன.</p>
+      <span class="eyebrow" data-show-lang="en">We're just getting started</span>
+      <span class="eyebrow ta" data-show-lang="ta">நாங்கள் இப்போதுதான் தொடங்குகிறோம்</span>
+      <h2 data-show-lang="en">No fake reviews. Just an <em>honest start</em>.</h2>
+      <h2 class="ta" data-show-lang="ta" style="font-family: 'Catamaran', serif; font-weight: 600;">போலி கருத்துக்கள் இல்லை. ஒரு <em>நேர்மையான தொடக்கம்</em>.</h2>
+      <p data-show-lang="en">AgrowAI is brand new and built right here in Thoothukudi. The bot works today — diagnosis, prices, weather, all in Tamil. What it doesn't have yet is a wall of testimonials, and we won't make any up. We'd rather earn your trust one real harvest at a time.</p>
+      <p class="ta" data-show-lang="ta">AgrowAI புதியது — இங்கே தூத்துக்குடியில் உருவாக்கப்பட்டது. நோய் கண்டறிதல், விலை, வானிலை — எல்லாம் இன்று தமிழில் வேலை செய்கிறது. இன்னும் கருத்துக்கள் சேகரிக்கவில்லை, போலியாகவும் எழுத மாட்டோம். ஒவ்வொரு உண்மையான அறுவடையாக உங்கள் நம்பிக்கையை சம்பாதிக்க விரும்புகிறோம்.</p>
     </div>
 
-    <div class="testi-grid">
-      <div class="testi reveal">
-        <div class="testi-quote-mark">"</div>
-        <p class="testi-text" data-show-lang="en">My banana crop had panama wilt. I sent a photo at 5am. The bot told me what to do before the agri-officer's office opened. I saved 40 trees that season.</p>
-        <p class="testi-text ta" data-show-lang="ta">என் வாழைக்கு பனாமா வாட்டம் வந்தது. காலை 5 மணிக்கு படம் அனுப்பினேன். வேளாண் அலுவலகம் திறப்பதற்கு முன்பே என்ன செய்ய வேண்டும் என்று பதில் வந்தது. அந்த பருவத்தில் 40 மரங்களை காப்பாற்றினேன்.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">
-            <img src="https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=200&q=80&auto=format&fit=crop"
-                 alt="Murugan, banana farmer"
-                 onerror="this.onerror=null; this.src='https://source.unsplash.com/featured/200x200/?indian,farmer,man'" loading="lazy" />
-          </div>
-          <div class="testi-meta">
-            <div class="testi-name">Murugan S.</div>
-            <div class="testi-location" data-show-lang="en">Banana farmer · Tenkasi</div>
-            <div class="testi-location ta" data-show-lang="ta">வாழை விவசாயி · தென்காசி</div>
-          </div>
-        </div>
+    <div class="founding-invite">
+      <div class="founding-card reveal">
+        <div class="founding-badge" data-show-lang="en">Founding farmers</div>
+        <div class="founding-badge ta" data-show-lang="ta">முதல் விவசாயிகள்</div>
+        <h3 data-show-lang="en">Be one of our first farmers.</h3>
+        <h3 class="ta" data-show-lang="ta" style="font-family: 'Catamaran', serif; font-weight: 600;">எங்கள் முதல் விவசாயிகளில் ஒருவராக இருங்கள்.</h3>
+        <p data-show-lang="en">Send your first message today. Tell us what's wrong in your field, and tell us what AgrowAI gets wrong too. The farmers who join us now will shape what we build next — and we'll remember who was here first.</p>
+        <p class="ta" data-show-lang="ta">இன்றே முதல் செய்தியை அனுப்புங்கள். உங்கள் வயலில் என்ன பிரச்சினை என்று சொல்லுங்கள் — AgrowAI எங்கே தவறு செய்கிறது என்றும் சொல்லுங்கள். இப்போது இணையும் விவசாயிகள் நாங்கள் அடுத்து கட்டுவதை வடிவமைப்பார்கள் — முதலில் வந்தவர்கள் யார் என்பதை நினைவில் வைப்போம்.</p>
+        <a href="https://wa.me/919790177750?text=வணக்கம்" class="btn btn-whatsapp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.149-.174.198-.298.297-.496.099-.198.05-.372-.025-.521-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+          <span data-show-lang="en">Send the first message</span>
+          <span class="ta" data-show-lang="ta">முதல் செய்தியை அனுப்பு</span>
+        </a>
       </div>
 
-      <div class="testi reveal">
-        <div class="testi-quote-mark">"</div>
-        <p class="testi-text" data-show-lang="en">For 12 years I sold tomatoes at whatever price the trader said. Now I check Madurai and Koyambedu rates every morning. Last week I got ₹6 extra per kilo.</p>
-        <p class="testi-text ta" data-show-lang="ta">12 ஆண்டுகளாக தரகர் சொன்ன விலைக்கே தக்காளி விற்றேன். இப்போது தினமும் காலை மதுரை, கோயம்பேடு விலையை பார்க்கிறேன். கடந்த வாரம் கிலோவுக்கு ₹6 அதிகம் கிடைத்தது.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">
-            <img src="https://images.unsplash.com/photo-1592194996308-7b43878e84a6?w=200&q=80&auto=format&fit=crop"
-                 alt="Lakshmi, tomato farmer"
-                 onerror="this.onerror=null; this.src='https://source.unsplash.com/featured/200x200/?indian,farmer,woman'" loading="lazy" />
-          </div>
-          <div class="testi-meta">
-            <div class="testi-name">Lakshmi K.</div>
-            <div class="testi-location" data-show-lang="en">Tomato farmer · Tirunelveli</div>
-            <div class="testi-location ta" data-show-lang="ta">தக்காளி விவசாயி · திருநெல்வேலி</div>
-          </div>
-        </div>
-      </div>
+      <div class="founding-promise reveal">
+        <span class="founding-promise-label" data-show-lang="en">Our promise to you</span>
+        <span class="founding-promise-label ta" data-show-lang="ta">உங்களுக்கு எங்கள் வாக்குறுதி</span>
+        <ul class="founding-list">
+          <li data-show-lang="en"><strong>Always free</strong> for individual farmers — diagnosis, prices, and weather.</li>
+          <li class="ta" data-show-lang="ta"><strong>தனி விவசாயிகளுக்கு எப்போதும் இலவசம்</strong> — நோய், விலை, வானிலை.</li>
 
-      <div class="testi reveal">
-        <div class="testi-quote-mark">"</div>
-        <p class="testi-text" data-show-lang="en">The rain warning came at 9pm. I rushed to the threshing floor and covered 800kg of paddy. Without that message, half my season would've been ruined.</p>
-        <p class="testi-text ta" data-show-lang="ta">இரவு 9 மணிக்கு மழை எச்சரிக்கை வந்தது. கதிர் சேர்க்கும் இடத்துக்கு ஓடினேன், 800 கிலோ நெல்லை மூடினேன். அந்த செய்தி இல்லாமல் இருந்தால் என் பாதி பருவம் வீணாகியிருக்கும்.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">
-            <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=200&q=80&auto=format&fit=crop"
-                 alt="Selvam, paddy farmer"
-                 onerror="this.onerror=null; this.src='https://source.unsplash.com/featured/200x200/?tamil,farmer,old'" loading="lazy" />
-          </div>
-          <div class="testi-meta">
-            <div class="testi-name">Selvam P.</div>
-            <div class="testi-location" data-show-lang="en">Paddy farmer · Thoothukudi</div>
-            <div class="testi-location ta" data-show-lang="ta">நெல் விவசாயி · தூத்துக்குடி</div>
-          </div>
-        </div>
+          <li data-show-lang="en"><strong>We'll tell you when we don't know.</strong> If the AI isn't sure, it says so — it won't guess with your crop.</li>
+          <li class="ta" data-show-lang="ta"><strong>தெரியாதபோது சொல்வோம்.</strong> AI-க்கு உறுதி இல்லாவிட்டால் அப்படியே சொல்லும் — உங்கள் பயிரை வைத்து யூகிக்காது.</li>
+
+          <li data-show-lang="en"><strong>We never push any brand's pesticide.</strong> We tell you what's right, and warn you about what's banned.</li>
+          <li class="ta" data-show-lang="ta"><strong>எந்த நிறுவனத்தின் மருந்தையும் திணிக்க மாட்டோம்.</strong> சரியானதை சொல்வோம், தடைசெய்யப்பட்டதை எச்சரிப்போம்.</li>
+
+          <li data-show-lang="en"><strong>Your photos stay yours.</strong> We use them to help you, not to sell to anyone.</li>
+          <li class="ta" data-show-lang="ta"><strong>உங்கள் படங்கள் உங்களுடையவை.</strong> உங்களுக்கு உதவவே பயன்படுத்துவோம், யாருக்கும் விற்க மாட்டோம்.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -2573,26 +2624,26 @@ footer {
       <div class="coverage-text">
         <span class="eyebrow" data-show-lang="en">Where we work</span>
         <span class="eyebrow ta" data-show-lang="ta">எங்கே வேலை செய்கிறோம்</span>
-        <h2 data-show-lang="en">Built for the <em>Thamirabarani belt</em> first.</h2>
-        <h2 class="ta" data-show-lang="ta" style="font-family: 'Catamaran', serif; font-weight: 600;"><em>தாமிரபரணி பகுதி</em> முதலில்.</h2>
-        <p data-show-lang="en">We're starting in four South Tamil Nadu districts — where we know the soil, the rivers, the crops, and the seasonal calendar by heart. After we serve 10,000 farmers here exceptionally well, we'll expand.</p>
-        <p class="ta" data-show-lang="ta">நாங்கள் தென் தமிழ்நாட்டின் நான்கு மாவட்டங்களில் தொடங்குகிறோம் — அங்கு மண், ஆறுகள், பயிர்கள், பருவ காலெண்டர் எங்களுக்கு பரிச்சயம். இங்கே 10,000 விவசாயிகளுக்கு சிறப்பாக சேவை செய்த பிறகு விரிவாக்குவோம்.</p>
+        <h2 data-show-lang="en">Starting in <em>Thoothukudi</em>. Growing outward.</h2>
+        <h2 class="ta" data-show-lang="ta" style="font-family: 'Catamaran', serif; font-weight: 600;"><em>தூத்துக்குடியில்</em> தொடக்கம். வெளியே வளர்ச்சி.</h2>
+        <p data-show-lang="en">We're beginning right here in the Thamirabarani belt — where we know the soil, the rivers, the crops, and the seasons by heart. Thoothukudi first, then Tirunelveli and Tenkasi, then Kanyakumari. We'd rather serve one region well than spread thin across many.</p>
+        <p class="ta" data-show-lang="ta">நாங்கள் இங்கே தாமிரபரணி பகுதியில் தொடங்குகிறோம் — மண், ஆறுகள், பயிர்கள், பருவங்கள் எங்களுக்கு நன்கு தெரியும். முதலில் தூத்துக்குடி, பிறகு திருநெல்வேலி, தென்காசி, பின் கன்னியாகுமரி. பல இடங்களில் பரந்து கிடப்பதை விட ஒரு பகுதிக்கு சிறப்பாக சேவை செய்வோம்.</p>
 
         <div class="coverage-stats">
           <div class="coverage-stat">
-            <div class="coverage-stat-num">4</div>
-            <div class="coverage-stat-label" data-show-lang="en">districts</div>
-            <div class="coverage-stat-label ta" data-show-lang="ta">மாவட்டங்கள்</div>
+            <div class="coverage-stat-num" style="color:var(--green-bright)">Now</div>
+            <div class="coverage-stat-label" data-show-lang="en">Thoothukudi</div>
+            <div class="coverage-stat-label ta" data-show-lang="ta">தூத்துக்குடி</div>
           </div>
           <div class="coverage-stat">
-            <div class="coverage-stat-num">12k+</div>
-            <div class="coverage-stat-label" data-show-lang="en">villages</div>
-            <div class="coverage-stat-label ta" data-show-lang="ta">கிராமங்கள்</div>
+            <div class="coverage-stat-num" style="color:var(--saffron)">Next</div>
+            <div class="coverage-stat-label" data-show-lang="en">Tirunelveli · Tenkasi</div>
+            <div class="coverage-stat-label ta" data-show-lang="ta">திருநெல்வேலி · தென்காசி</div>
           </div>
           <div class="coverage-stat">
-            <div class="coverage-stat-num">8</div>
-            <div class="coverage-stat-label" data-show-lang="en">major crops</div>
-            <div class="coverage-stat-label ta" data-show-lang="ta">முக்கிய பயிர்கள்</div>
+            <div class="coverage-stat-num" style="color:var(--saffron)">Soon</div>
+            <div class="coverage-stat-label" data-show-lang="en">Kanyakumari</div>
+            <div class="coverage-stat-label ta" data-show-lang="ta">கன்னியாகுமரி</div>
           </div>
         </div>
       </div>
@@ -2609,12 +2660,12 @@ footer {
 
           <!-- Tirunelveli -->
           <path d="M 140 180 L 240 180 L 240 250 L 220 310 L 160 320 L 130 270 Z"
-                fill="#1F4D2A" stroke="#0F2D17" stroke-width="2" class="map-district" />
+                fill="#E8A33D" stroke="#B45309" stroke-width="2" class="map-district" />
           <text x="190" y="245" font-family="Inter" font-size="13" font-weight="600" fill="#fff" text-anchor="middle">Tirunelveli</text>
 
           <!-- Tenkasi -->
           <path d="M 80 170 L 140 180 L 130 270 L 80 250 L 60 200 Z"
-                fill="#5FA84A" stroke="#1F4D2A" stroke-width="2" class="map-district" />
+                fill="#EBB463" stroke="#B45309" stroke-width="2" class="map-district" />
           <text x="100" y="225" font-family="Inter" font-size="11" font-weight="600" fill="#fff" text-anchor="middle">Tenkasi</text>
 
           <!-- Kanyakumari -->
@@ -2635,9 +2686,9 @@ footer {
           <!-- Legend -->
           <g transform="translate(20, 440)">
             <rect x="0" y="0" width="14" height="14" fill="#1F4D2A" rx="2"/>
-            <text x="22" y="11" font-family="Inter" font-size="11" fill="#1A2418">Active pilots</text>
+            <text x="22" y="11" font-family="Inter" font-size="11" fill="#1A2418">Live now</text>
             <rect x="120" y="0" width="14" height="14" fill="#D97706" rx="2"/>
-            <text x="142" y="11" font-family="Inter" font-size="11" fill="#1A2418">Launching Q3</text>
+            <text x="142" y="11" font-family="Inter" font-size="11" fill="#1A2418">Coming next</text>
           </g>
         </svg>
       </div>
@@ -2652,10 +2703,12 @@ footer {
 <section class="partners" id="partners">
   <div class="container">
     <div class="sect-head centered">
-      <span class="eyebrow" data-show-lang="en">For partners</span>
-      <span class="eyebrow ta" data-show-lang="ta">பங்காளர்களுக்கு</span>
-      <h2 data-show-lang="en">A platform <em>built for the people</em><br>who finance Indian agriculture.</h2>
-      <h2 class="ta" data-show-lang="ta" style="font-family: 'Catamaran', serif; font-weight: 600;"><em>இந்திய வேளாண்மைக்கு</em><br>நிதி அளிப்பவர்களுக்கான தளம்.</h2>
+      <span class="eyebrow" data-show-lang="en">For partners · the road ahead</span>
+      <span class="eyebrow ta" data-show-lang="ta">பங்காளர்களுக்கு · முன்னோக்கி</span>
+      <h2 data-show-lang="en">How AgrowAI <em>stays free</em><br>for the farmer.</h2>
+      <h2 class="ta" data-show-lang="ta" style="font-family: 'Catamaran', serif; font-weight: 600;">விவசாயிக்கு <em>இலவசமாக</em><br>இருப்பது எப்படி.</h2>
+      <p class="partners-intro" data-show-lang="en">The farmer never pays. The plan is for the organisations who already serve farmers to sponsor the service. These partnerships are how we'll fund it — we're talking to the groups below and would love to talk to you.</p>
+      <p class="partners-intro ta" data-show-lang="ta">விவசாயி எப்போதும் கட்டணம் செலுத்த மாட்டார். ஏற்கனவே விவசாயிகளுக்கு சேவை செய்யும் அமைப்புகள் இந்த சேவைக்கு நிதியளிக்கும் திட்டம். கீழே உள்ள குழுக்களுடன் பேசிக்கொண்டிருக்கிறோம் — உங்களுடனும் பேச விரும்புகிறோம்.</p>
     </div>
 
     <div class="partners-grid">
@@ -2670,11 +2723,11 @@ footer {
         </div>
         <h3 data-show-lang="en">FPOs &amp; Cooperatives</h3>
         <h3 class="ta" data-show-lang="ta">விவசாயி உற்பத்தியாளர் அமைப்புகள்</h3>
-        <p data-show-lang="en">Serve your 500–5,000 farmer members better. AgrowAI works as a white-label service under your FPO brand. You retain the relationship; we provide the intelligence.</p>
-        <p class="ta" data-show-lang="ta">உங்கள் 500–5,000 உறுப்பினர் விவசாயிகளுக்கு சிறப்பான சேவை. AgrowAI உங்கள் FPO பெயரில் இயங்கும். உறவு உங்களுடையது; நுட்பம் எங்களுடையது.</p>
+        <p data-show-lang="en">Serve your farmer members better. The idea is for AgrowAI to run under your FPO's name — you keep the relationship, we provide the intelligence in Tamil.</p>
+        <p class="ta" data-show-lang="ta">உங்கள் உறுப்பினர் விவசாயிகளுக்கு சிறந்த சேவை. AgrowAI உங்கள் FPO பெயரில் இயங்கும் — உறவு உங்களுடையது, தமிழில் நுட்பம் எங்களுடையது.</p>
         <div class="partner-meta">
-          <span class="partner-tag" data-show-lang="en">₹15/farmer/month</span>
-          <span class="partner-tag ta" data-show-lang="ta">விவசாயிக்கு ₹15/மாதம்</span>
+          <span class="partner-tag" data-show-lang="en">Let's talk</span>
+          <span class="partner-tag ta" data-show-lang="ta">பேசுவோம்</span>
         </div>
       </div>
 
@@ -2686,11 +2739,11 @@ footer {
         </div>
         <h3 data-show-lang="en">Banks &amp; Insurers</h3>
         <h3 class="ta" data-show-lang="ta">வங்கிகள் &amp; காப்பீட்டாளர்கள்</h3>
-        <p data-show-lang="en">Verified farmer engagement data, crop health timelines, and real-time risk signals. Reduce KCC default risk and crop insurance claim disputes.</p>
-        <p class="ta" data-show-lang="ta">சரிபார்க்கப்பட்ட விவசாயி தரவு, பயிர் ஆரோக்கிய தகவல், நேரடி அபாயக் குறிகாட்டிகள். KCC பிரச்சனை மற்றும் காப்பீட்டு கோரிக்கைகளை குறைக்கவும்.</p>
+        <p data-show-lang="en">As farmers use AgrowAI, it can build a picture of crop health over a season. Down the road, that could help lenders and insurers understand real risk — with the farmer's consent.</p>
+        <p class="ta" data-show-lang="ta">விவசாயிகள் AgrowAI-ஐ பயன்படுத்தும்போது, ஒரு பருவத்தின் பயிர் ஆரோக்கியத்தை அறியலாம். விவசாயியின் சம்மதத்துடன், இது வங்கிகளுக்கும் காப்பீட்டாளர்களுக்கும் உண்மையான அபாயத்தை புரிய உதவும்.</p>
         <div class="partner-meta">
-          <span class="partner-tag" data-show-lang="en">Enterprise pricing</span>
-          <span class="partner-tag ta" data-show-lang="ta">தொழில்நிறுவன விலை</span>
+          <span class="partner-tag" data-show-lang="en">On the roadmap</span>
+          <span class="partner-tag ta" data-show-lang="ta">திட்டத்தில்</span>
         </div>
       </div>
 
@@ -2704,11 +2757,11 @@ footer {
         </div>
         <h3 data-show-lang="en">Carbon Markets</h3>
         <h3 class="ta" data-show-lang="ta">கார்பன் சந்தைகள்</h3>
-        <p data-show-lang="en">Soil carbon and methane reduction MRV (Measurement, Reporting, Verification) at farmer scale. Verra and Gold Standard ready. Aggregate small farmers into bankable carbon assets.</p>
-        <p class="ta" data-show-lang="ta">விவசாயி அளவில் மண் கார்பன் மற்றும் மீத்தேன் கட்டுப்பாட்டு கண்காணிப்பு. சிறு விவசாயிகளை கார்பன் சொத்துக்களாக ஒன்றிணைக்கிறோம்.</p>
+        <p data-show-lang="en">A longer-term idea: helping smallholders adopt soil practices that store carbon, and connecting their efforts to carbon markets that today are out of reach for small farms.</p>
+        <p class="ta" data-show-lang="ta">நீண்டகால யோசனை: சிறு விவசாயிகள் கார்பனை சேமிக்கும் மண் முறைகளை பின்பற்ற உதவுவது, இன்று சிறு பண்ணைகளுக்கு எட்டாத கார்பன் சந்தைகளுடன் இணைப்பது.</p>
         <div class="partner-meta">
-          <span class="partner-tag" data-show-lang="en">Coming Q4 2026</span>
-          <span class="partner-tag ta" data-show-lang="ta">Q4 2026 வருகிறது</span>
+          <span class="partner-tag" data-show-lang="en">Future idea</span>
+          <span class="partner-tag ta" data-show-lang="ta">எதிர்கால யோசனை</span>
         </div>
       </div>
 
@@ -2721,17 +2774,17 @@ footer {
         </div>
         <h3 data-show-lang="en">Input Companies</h3>
         <h3 class="ta" data-show-lang="ta">உள்ளீட்டு நிறுவனங்கள்</h3>
-        <p data-show-lang="en">Reach 10,000+ farmers with verified recommendations from trusted AI. We never promote your products — but we can fulfill demand you generate.</p>
-        <p class="ta" data-show-lang="ta">நம்பகமான AI-யுடன் 10,000+ விவசாயிகளை சென்றடையுங்கள். உங்கள் தயாரிப்புகளை விளம்பரம் செய்ய மாட்டோம் — ஆனால் நீங்கள் உருவாக்கும் தேவையை நாங்கள் நிறைவேற்ற முடியும்.</p>
+        <p data-show-lang="en">We will never promote a brand's product for payment — that would break the farmer's trust. But honest demand we create for the right inputs is something we can talk about fulfilling.</p>
+        <p class="ta" data-show-lang="ta">பணத்திற்காக எந்த நிறுவனத்தின் தயாரிப்பையும் விளம்பரம் செய்ய மாட்டோம் — அது விவசாயியின் நம்பிக்கையை உடைக்கும். ஆனால் சரியான உள்ளீடுகளுக்கு உருவாகும் நேர்மையான தேவையை பற்றி பேசலாம்.</p>
         <div class="partner-meta">
-          <span class="partner-tag" data-show-lang="en">Partnership model</span>
-          <span class="partner-tag ta" data-show-lang="ta">பங்காளி மாதிரி</span>
+          <span class="partner-tag" data-show-lang="en">With conditions</span>
+          <span class="partner-tag ta" data-show-lang="ta">நிபந்தனைகளுடன்</span>
         </div>
       </div>
     </div>
 
     <div class="partners-cta">
-      <a href="mailto:partner@agrowai.in" class="btn btn-primary">
+      <a href="mailto:agrowai.tn@gmail.com" class="btn btn-primary">
         <span data-show-lang="en">Partner with us →</span>
         <span class="ta" data-show-lang="ta">எங்களுடன் இணையுங்கள் →</span>
       </a>
@@ -2759,20 +2812,20 @@ footer {
         <p class="ta" data-show-lang="ta">எண்ணை சேமி. "வணக்கம்" அனுப்பு. அவ்வளவே. செயலி இல்லை, பதிவு இல்லை, கட்டணம் இல்லை.</p>
 
         <div class="cta-actions">
-          <a href="https://wa.me/919876543210?text=வணக்கம்" class="btn btn-whatsapp btn-large">
+          <a href="https://wa.me/919790177750?text=வணக்கம்" class="btn btn-whatsapp btn-large">
             <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
             <span data-show-lang="en">Start on WhatsApp</span>
             <span class="ta" data-show-lang="ta">WhatsApp-ல் தொடங்கு</span>
           </a>
-          <a href="mailto:partner@agrowai.in" class="btn btn-ghost btn-ghost-light btn-large">
+          <a href="mailto:agrowai.tn@gmail.com" class="btn btn-ghost btn-ghost-light btn-large">
             <span data-show-lang="en">Partner inquiry</span>
             <span class="ta" data-show-lang="ta">பங்காளர் விசாரணை</span>
           </a>
         </div>
 
         <div class="cta-meta">
-          <span data-show-lang="en">📞 Or call us: +91 98765 43210 · Mon–Sat, 9am–6pm</span>
-          <span class="ta" data-show-lang="ta">📞 அல்லது அழைக்கவும்: +91 98765 43210 · திங்கள்–சனி, காலை 9 – மாலை 6</span>
+          <span data-show-lang="en">📱 WhatsApp: +91 97901 77750 · or email agrowai.tn@gmail.com</span>
+          <span class="ta" data-show-lang="ta">📱 WhatsApp: +91 97901 77750 · அல்லது மின்னஞ்சல் agrowai.tn@gmail.com</span>
         </div>
       </div>
     </div>
@@ -2794,7 +2847,7 @@ footer {
         <p data-show-lang="en">AI farming intelligence for the smallholder farmers of South Tamil Nadu — diagnosis, prices, and weather on WhatsApp, in Tamil.</p>
         <p class="ta" data-show-lang="ta">தென் தமிழ்நாட்டின் சிறு விவசாயிகளுக்கான AI வேளாண் நுட்பம் — WhatsApp-ல், தமிழில் — நோய் கண்டறிதல், விலை, வானிலை.</p>
         <div class="footer-locale">
-          <span>🇮🇳 Made in Tirunelveli</span>
+          <span>🇮🇳 Made in Thoothukudi</span>
         </div>
       </div>
 
@@ -2805,7 +2858,7 @@ footer {
           <li><a href="#cta" data-show-lang="en">Start on WhatsApp</a><a href="#cta" class="ta" data-show-lang="ta">WhatsApp-ல் தொடங்கு</a></li>
           <li><a href="#how" data-show-lang="en">How it works</a><a href="#how" class="ta" data-show-lang="ta">எப்படி வேலை செய்கிறது</a></li>
           <li><a href="#pillars" data-show-lang="en">What it does</a><a href="#pillars" class="ta" data-show-lang="ta">என்ன செய்கிறது</a></li>
-          <li><a href="#testimonials" data-show-lang="en">Farmer stories</a><a href="#testimonials" class="ta" data-show-lang="ta">விவசாயி கதைகள்</a></li>
+          <li><a href="#testimonials" data-show-lang="en">Be our first farmer</a><a href="#testimonials" class="ta" data-show-lang="ta">முதல் விவசாயி ஆகுங்கள்</a></li>
         </ul>
       </div>
 
@@ -2816,7 +2869,7 @@ footer {
           <li><a href="#partners" data-show-lang="en">FPOs &amp; Cooperatives</a><a href="#partners" class="ta" data-show-lang="ta">FPOக்கள்</a></li>
           <li><a href="#partners" data-show-lang="en">Banks &amp; Insurance</a><a href="#partners" class="ta" data-show-lang="ta">வங்கிகள்</a></li>
           <li><a href="#partners" data-show-lang="en">Carbon markets</a><a href="#partners" class="ta" data-show-lang="ta">கார்பன் சந்தைகள்</a></li>
-          <li><a href="mailto:partner@agrowai.in" data-show-lang="en">Partnership inquiry</a><a href="mailto:partner@agrowai.in" class="ta" data-show-lang="ta">பங்காளி விசாரணை</a></li>
+          <li><a href="mailto:agrowai.tn@gmail.com" data-show-lang="en">Partnership inquiry</a><a href="mailto:agrowai.tn@gmail.com" class="ta" data-show-lang="ta">பங்காளி விசாரணை</a></li>
         </ul>
       </div>
 
@@ -2824,9 +2877,9 @@ footer {
         <h4 data-show-lang="en">Contact</h4>
         <h4 class="ta" data-show-lang="ta">தொடர்பு</h4>
         <ul>
-          <li>📧 hello@agrowai.in</li>
-          <li>📱 +91 98765 43210</li>
-          <li><span data-show-lang="en">📍 Tirunelveli, Tamil Nadu</span><span class="ta" data-show-lang="ta">📍 திருநெல்வேலி, தமிழ்நாடு</span></li>
+          <li>📧 agrowai.tn@gmail.com</li>
+          <li>📱 WhatsApp: +91 97901 77750</li>
+          <li><span data-show-lang="en">📍 Thoothukudi, Tamil Nadu</span><span class="ta" data-show-lang="ta">📍 தூத்துக்குடி, தமிழ்நாடு</span></li>
         </ul>
       </div>
     </div>
@@ -2846,7 +2899,7 @@ footer {
      FLOATING WHATSAPP BUTTON
      ============================================================ -->
 
-<a href="https://wa.me/919876543210?text=வணக்கம்" class="float-wa" aria-label="Chat on WhatsApp">
+<a href="https://wa.me/919790177750?text=வணக்கம்" class="float-wa" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
 
